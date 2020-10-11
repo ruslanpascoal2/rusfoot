@@ -1,0 +1,12 @@
+<div class="wrapper">
+
+  <div class="canvas">
+
+      <app-welcome [show]="currentScreen == 'welcome'" (user)="setUser($event)" (screenSubmitted)="manageScreens($event)"></app-welcome>
+      <app-team-picking [show]="currentScreen == 'team-picking'"></app-team-picking>
+      <app-squad [show]="currentScreen == 'squad'"></app-squad>
+      <app-match [show]="currentScreen == 'match'"></app-match>
+
+  </div>
+
+</div>

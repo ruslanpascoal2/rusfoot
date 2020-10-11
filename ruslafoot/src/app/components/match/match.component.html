@@ -1,0 +1,16 @@
+<div class="match" *ngIf="show">
+
+    <span class="title mb-5">Campeonato Brasileiro</span>
+    <span class="time">{{timer}}</span>
+
+    <div class="games mt-4">
+        <div class="game" *ngFor="let game of games">
+          <div class="team">{{game.home.name}}</div>
+          <span>{{game.score.h}}</span>
+          <span>X</span>
+          <span>{{game.score.a}}</span>
+          <div class="team">{{game.away.name}}</div>
+        </div>
+    </div>
+
+</div>

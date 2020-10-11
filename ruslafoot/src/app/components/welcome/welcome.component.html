@@ -1,0 +1,18 @@
+<div class="welcome" *ngIf="show">
+
+  <div class="d-flex flex-column align-items-center justify-content-center mb-5">
+
+    <div class="logo mb-4">
+      <img src="../../../assets/Design sem nome.png" height="310" alt="">
+    </div>
+    <span class="title" >Meu nome é</span>
+    <div class="d-flex mt-3">
+      <form [formGroup]="form">
+      <input type="text" class="form-control" formControlName="name">
+    </form>
+      <button class="btn btn-success ml-2" (click)="submitScreen()">Start</button>
+    </div>
+
+  </div>
+
+</div>
