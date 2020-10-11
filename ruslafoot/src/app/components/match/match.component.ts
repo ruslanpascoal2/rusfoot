@@ -1,19 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { timer, interval } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
+import { Match } from 'src/app/models/match';
+import { Team } from 'src/app/models/team';
 
-export interface TeamI {
-  name: string;
-  power: number;
-}
 
-export interface GameI {
-  home: TeamI;
-  away: TeamI;
-  score: {h: number, a:number};
-  time: number;
-  percentages?: number[]
-}
 
 @Component({
   selector: 'app-match',
@@ -25,10 +16,10 @@ export class MatchComponent implements OnInit {
 
   timer = 0 ;
 
-  games: GameI[] = [
+  games: Match[] = [
     {
-      home: { name: 'Goiás', power: 70 },
-      away: { name: 'Vila Nova', power: 30 },
+      home: new Team('Goiás', 70, { primary: 'green', secondary: '#fff'} ),
+      away: new Team('Atletico-GO', 70, { primary: 'black', secondary: 'red'} ),
       score: {h: 0, a: 0},
       time: 0,
     },
@@ -37,6 +28,8 @@ export class MatchComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    console.log(this.games[0].home);
+
     this.calculatePercentages(this.games);
     const timerInterval$ = interval(1000);
     const timer$ = timer(90000);
@@ -57,7 +50,6 @@ export class MatchComponent implements OnInit {
       return;
     }
     else{
-      debugger;
       const randomGoal  = Math.floor(Math.random() * 100) + 0;
       if(randomGoal > 7){
         games[0].score.h += 1;

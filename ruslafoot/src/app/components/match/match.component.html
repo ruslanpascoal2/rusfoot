@@ -1,15 +1,15 @@
-<div class="match" *ngIf="show">
+<div class="match">
 
     <span class="title mb-5">Campeonato Brasileiro</span>
     <span class="time">{{timer}}</span>
 
     <div class="games mt-4">
         <div class="game" *ngFor="let game of games">
-          <div class="team">{{game.home.name}}</div>
+          <div class="team" [ngStyle]="{'background': game.home.colors.primary, 'color': game.home.colors.secondary}">{{game.home.name}}</div>
           <span>{{game.score.h}}</span>
           <span>X</span>
           <span>{{game.score.a}}</span>
-          <div class="team">{{game.away.name}}</div>
+          <div class="team" [ngStyle]="{'background': game.away.colors.primary, 'color': game.away.colors.secondary}">{{game.away.name}}</div>
         </div>
     </div>
 

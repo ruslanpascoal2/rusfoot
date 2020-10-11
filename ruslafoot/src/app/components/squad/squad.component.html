@@ -1,1 +1,24 @@
-<div class="squad" *ngIf="show"></div>
+<div class="squad" [ngStyle]="{'background': user.team.colors.primary}">
+
+  <div class="row mb-3 d-flex justify-content-between align-items-center px-4">
+    <div class="team-name" [ngStyle]="{'color': user.team.colors.secondary}">{{user.team.name}}</div>
+    <button class="btn btn-success" style="height: 40px;">Ir para o jogo</button>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-6">
+
+      <div class="table d-flex flex-column">
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

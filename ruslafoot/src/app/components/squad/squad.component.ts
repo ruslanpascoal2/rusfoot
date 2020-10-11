@@ -7,10 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SquadComponent implements OnInit {
   @Input() show: boolean;
+  @Input() user: any;
+
+  displayedColumns: string[] = ['name', 'position', 'overall'];
+  dataSource;
 
   constructor() { }
 
   ngOnInit(): void {
+   this.dataSource = this.user.team.players;
   }
 
 }

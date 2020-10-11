@@ -1,40 +1,47 @@
 import { Component, OnInit } from '@angular/core';
+import { TeamsService } from 'src/app/services/teams.service';
 
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit {
   user: any;
 
-  constructor() { }
+  constructor(private teamsService: TeamsService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  currentScreen: string = 'match';
+  currentScreen: string = 'welcome';
 
   screens = [
-    {title: 'welcome'},
-    {title: 'team-picking'},
-    {title: 'squad'},
-    {title: 'match'},
+    { title: 'welcome' },
+    { title: 'team-picking' },
+    { title: 'squad' },
+    { title: 'match' },
     {},
     {},
     {},
-  ]
+  ];
 
-  setUser(user){
+  setUser(user) {
     this.user = user;
   }
 
-  manageScreens(screen){
+  setTeam(team) {
+    this.user.team = team;
+    this.teamsService.generateSquads();
+  }
+
+  manageScreens() {
     switch (this.currentScreen) {
       case 'welcome':
-        this.currentScreen = 'match'
+        this.currentScreen = 'team-picking';
         break;
-
+      case 'team-picking':
+        this.currentScreen = 'squad';
+        break;
       default:
         break;
     }

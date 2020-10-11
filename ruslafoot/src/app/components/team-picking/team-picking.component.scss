@@ -1,0 +1,39 @@
+.team-picking{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.team-card {
+  height: 200px;
+  width: 300px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  -webkit-box-shadow: -1px 9px 19px -11px rgba(0, 0, 0, 0.54);
+  -moz-box-shadow: -1px 9px 19px -11px rgba(0, 0, 0, 0.54);
+  box-shadow: -1px 9px 19px -11px rgba(0, 0, 0, 0.54);
+  .name {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .power {
+    font-size: 35px;
+    height: 70px;
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba($color: #fff, $alpha: 0.2);
+    box-sizing: border-box;
+  }
+}
+
+.left, .right{
+  cursor: pointer;
+}

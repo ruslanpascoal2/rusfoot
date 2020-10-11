@@ -1,12 +1,19 @@
 <div class="wrapper">
-
   <div class="canvas">
+    <app-welcome
+      *ngIf="currentScreen == 'welcome'"
+      (user)="setUser($event)"
+      (screenSubmitted)="manageScreens()"
+    ></app-welcome>
 
-      <app-welcome [show]="currentScreen == 'welcome'" (user)="setUser($event)" (screenSubmitted)="manageScreens($event)"></app-welcome>
-      <app-team-picking [show]="currentScreen == 'team-picking'"></app-team-picking>
-      <app-squad [show]="currentScreen == 'squad'"></app-squad>
-      <app-match [show]="currentScreen == 'match'"></app-match>
+    <app-team-picking
+      *ngIf="currentScreen == 'team-picking'"
+      (screenSubmitted)="manageScreens()"
+      (teamSelected)="setTeam($event)"
+    ></app-team-picking>
+
+    <app-squad *ngIf="currentScreen == 'squad'" class="squad" [user]="user"></app-squad>
+    <app-match *ngIf="currentScreen == 'match'"></app-match>
 
   </div>
-
 </div>

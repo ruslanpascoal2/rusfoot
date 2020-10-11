@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Team } from 'src/app/models/team';
+import { TeamsService } from 'src/app/services/teams.service';
 
 @Component({
   selector: 'app-team-picking',
@@ -8,44 +10,41 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TeamPickingComponent implements OnInit {
 
   @Input() show: boolean;
+  @Output() screenSubmitted = new EventEmitter;
+  @Output() teamSelected = new EventEmitter;
+  teams: Team[];
+  currentTeam: number = 0 ;
 
-
-  slides = [
-    {img: "http://placehold.it/350x150/000000"},
-    {img: "http://placehold.it/350x150/111111"},
-    {img: "http://placehold.it/350x150/333333"},
-    {img: "http://placehold.it/350x150/666666"}
-  ];
-
-  slideConfig = {"slidesToShow": 4, "slidesToScroll": 4};
-
-  constructor() { }
+  constructor(private teamsService: TeamsService) {
+    this.teams = this.teamsService.getTeams();
+  }
 
   ngOnInit(): void {
+
   }
 
-  addSlide() {
-    this.slides.push({img: "http://placehold.it/350x150/777777"})
+  right(){
+    if(this.currentTeam == this.teams.length - 1){
+      this.currentTeam = 0;
+    }
+    else{
+      this.currentTeam++;
+    }
   }
 
-  removeSlide() {
-    this.slides.length = this.slides.length - 1;
+  left(){
+    if(this.currentTeam == 0){
+      this.currentTeam = this.teams.length - 1;
+    }
+    else{
+      this.currentTeam--;
+    }
   }
 
-  slickInit(e) {
-    console.log('slick initialized');
+  submitScreen(){
+    this.teamSelected.emit(this.teams[this.currentTeam]);
+    this.screenSubmitted.emit(true);
   }
 
-  breakpoint(e) {
-    console.log('breakpoint');
-  }
-
-  afterChange(e) {
-    console.log('afterChange');
-  }
-
-  beforeChange(e) {
-    console.log('beforeChange');
-  }
 
 }

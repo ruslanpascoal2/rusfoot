@@ -1,4 +1,33 @@
-<div class="team-picking" *ngIf="show">
+<div class="team-picking">
+
+  <div class="title mb-5">
+    Escolha uma equipe para comandar.
+  </div>
+
+  <div class="d-flex align-items-center">
+
+    <div class="left mr-5" (click)="left()">
+      <img src="../../../assets/chevron-left-solid.svg" height="30" alt="">
+    </div>
+
+    <div class="team-card"
+    *ngFor="let team of teams; let i = index"
+    [hidden]="i !== currentTeam"
+    [ngStyle]="{'background': team.colors.primary}">
+      <div class="name" [ngStyle]="{'color': team.colors.secondary}">{{team.name}}</div>
+      <div class="power" [ngStyle]="{'color': 'white'}">{{team.power}}</div>
+    </div>
+
+    <div class="right ml-5" (click)="right()">
+      <img src="../../../assets/chevron-right-solid.svg" height="30" alt="">
+    </div>
+
+  </div>
+
+  <div class="mt-5">
+    <button class="btn btn-success" (click)="submitScreen()" >Escolher</button>
+  </div>
+
 
 
 </div>
